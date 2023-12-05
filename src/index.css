@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Shadows+Into+Light&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Shadows Into Light", cursive;
+  font-family: "Montserrat Alternates", sans-serif;
+}
