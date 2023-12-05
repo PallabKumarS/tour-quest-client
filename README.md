@@ -1,6 +1,6 @@
 # Tour Quest
 
-### Live Link : https://pks-tour-quest.web.app/
+### Live Link : https://pks-tour-guide.web.app/
 
 ## Project Features
 
