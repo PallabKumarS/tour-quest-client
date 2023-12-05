@@ -2,19 +2,28 @@
 import CustomContainer from "../../shared/CustomContainer";
 import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
+import useAuth from "../../shared/useAuth";
+import { useRef } from "react";
 
 const BookingTable = ({ bookings, handlePay, handleCancel, handleApply }) => {
   const [showConfetti, setShowConfetti] = useState(false);
+  const hasTriggeredEffect = useRef(false);
+  const { handleAlert } = useAuth();
 
   useEffect(() => {
     if (bookings.length >= 3) {
+      !hasTriggeredEffect.current &&
+        handleAlert("success", "Congratulations! You got a discount!");
+
       setShowConfetti(true);
       const timer = setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
+      hasTriggeredEffect.current = true;
       return () => clearTimeout(timer);
     }
-  }, [bookings]);
+  }, [bookings.length, handleAlert]);
+
   return (
     <CustomContainer>
       <div className="overflow-x-scroll">
