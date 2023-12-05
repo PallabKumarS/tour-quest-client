@@ -3,20 +3,32 @@ import CustomSpinner from "../../shared/CustomSpinner";
 import { headerClasses } from "../../shared/CustomText";
 import Loader from "../../shared/Loader";
 import useAuth from "../../shared/useAuth";
+import useAxios from "../../shared/useAxios";
 import BookingTable from "./BookingTable";
 
 const BookingList = () => {
-  const { user } = useAuth();
-  const { isLoading, data: bookings } = Loader(
-    `/bookings?email=${user.email}`,
-    `bookings?email=${user.email}`
-  );
+  const { user, handleAlert } = useAuth();
+  const axiosSecure = useAxios();
+  const {
+    isLoading,
+    data: bookings,
+    refetch,
+  } = Loader(`/bookings?email=${user.email}`, `bookings?email=${user.email}`);
 
   if (isLoading) {
     return <CustomSpinner></CustomSpinner>;
   }
 
-  const handleCancel = () => {};
+  const handleCancel = (tour) => {
+    axiosSecure
+      .delete(`/bookings/${tour?._id}?email=${user?.email}`)
+      .then((res) => {
+        if (res.status == 201) {
+          handleAlert("success", "Booking Cancelled");
+          refetch();
+        }
+      });
+  };
 
   const handlePay = () => {};
 

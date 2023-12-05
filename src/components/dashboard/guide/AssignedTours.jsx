@@ -9,7 +9,11 @@ const AssignedTours = () => {
   const { user, handleAlert } = useAuth();
   const axiosSecure = useAxios();
 
-  const { isLoading, data: bookings } = Loader(
+  const {
+    isLoading,
+    data: bookings,
+    refetch,
+  } = Loader(
     `/assigned-bookings?name=${user?.displayName}`,
     `${user?.displayName}`
   );
@@ -27,6 +31,7 @@ const AssignedTours = () => {
       .then((res) => {
         if (res.status === 201) {
           handleAlert("success", "Status Changed");
+          refetch();
         }
       });
   };
@@ -40,6 +45,7 @@ const AssignedTours = () => {
       .then((res) => {
         if (res.status === 201) {
           handleAlert("success", "Status Changed");
+          refetch();
         }
       });
   };
