@@ -10,13 +10,14 @@ import { customButtonClasses } from "../../shared/MotionBtn";
 import ReviewCard from "./ReviewCard";
 import useAxios from "../../shared/useAxios";
 
-const ReviewGuide = ({ id, refetch }) => {
+const ReviewGuide = ({ id }) => {
   const axiosSecure = useAxios();
   const { user, handleAlert } = useAuth();
-  const { isLoading, data: reviews } = Loader(
-    `/reviews/${id}`,
-    `/reviews/${id}`
-  );
+  const {
+    isLoading,
+    data: reviews,
+    refetch,
+  } = Loader(`/reviews/${id}`, `/reviews/${id}`);
 
   if (isLoading) {
     return <CustomContainer></CustomContainer>;
@@ -46,7 +47,21 @@ const ReviewGuide = ({ id, refetch }) => {
       .post(`/reviews?email=${user?.email}`, reviewData)
       .then((res) => {
         if (res.status == 201) {
-          handleAlert("success", "Review Posted Successfully");
+          handleAlert("success", "Review Posted");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        handleAlert("error", err.message);
+      });
+  };
+
+  const handleDelete = (id) => {
+    axiosSecure
+      .delete(`/reviews/${id}?email=${user?.email}`)
+      .then((res) => {
+        if (res.status == 201) {
+          handleAlert("success", "Review Deleted");
           refetch();
         }
       })
@@ -56,10 +71,14 @@ const ReviewGuide = ({ id, refetch }) => {
   };
 
   return (
-    <div>
+    <div className="">
       {reviews.length > 0 ? (
         reviews?.map((review) => (
-          <ReviewCard key={review._id} review={review}></ReviewCard>
+          <ReviewCard
+            key={review._id}
+            review={review}
+            handleDelete={handleDelete}
+          ></ReviewCard>
         ))
       ) : (
         <div>

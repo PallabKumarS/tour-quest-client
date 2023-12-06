@@ -24,13 +24,14 @@ const AssignedTours = () => {
 
   const handleAccept = (id) => {
     const status = {
-      status: "Accept",
+      status: "Accepted",
     };
+
     axiosSecure
       .put(`/assigned-bookings/${id}?email=${user?.email}`, status)
       .then((res) => {
         if (res.status === 201) {
-          handleAlert("success", "Status Changed");
+          handleAlert("success", "Booking Accepted");
           refetch();
         }
       });
@@ -38,13 +39,13 @@ const AssignedTours = () => {
 
   const handleReject = (id) => {
     const status = {
-      status: "Reject",
+      status: "Rejected",
     };
     axiosSecure
       .put(`/assigned-bookings/${id}?email=${user?.email}`, status)
       .then((res) => {
         if (res.status === 201) {
-          handleAlert("success", "Status Changed");
+          handleAlert("warn", "Booking Rejected");
           refetch();
         }
       });

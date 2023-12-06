@@ -8,7 +8,7 @@ import ReviewGuide from "./ReviewGuide";
 const GuideDetails = () => {
   const { id } = useParams();
 
-  const { isLoading, data: guide,refetch } = Loader(`/guides/${id}`, `/guides/${id}`);
+  const { isLoading, data: guide } = Loader(`/guides/${id}`, `/guides/${id}`);
 
   if (isLoading) {
     return <CustomSpinner></CustomSpinner>;
@@ -83,7 +83,7 @@ const GuideDetails = () => {
       <h2 className={`${headerClasses} mt-20 mb-10`}>
         Reviews About <span className="underline">{name}</span>
       </h2>
-      <ReviewGuide id={id} refetch={refetch}></ReviewGuide>
+      <ReviewGuide id={id}></ReviewGuide>
     </CustomContainer>
   );
 };

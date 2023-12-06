@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import { PhotoView } from "react-photo-view";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
+import { MdDeleteForever } from "react-icons/md";
 
-const ReviewCard = ({ review }) => {
-  const { posterImage, posterName, comment, postRating, postDate } = review;
+const ReviewCard = ({ review, handleDelete }) => {
+  const { _id, posterImage, posterName, comment, postRating, postDate } =
+    review;
 
   const myStyles = {
     itemShapes: RoundedStar,
@@ -12,7 +14,11 @@ const ReviewCard = ({ review }) => {
   };
 
   return (
-    <div className="card card-side bg-[#657bad99] shadow-xl mx-auto px-5 pt-5 items-center flex-col md:flex-row justify-between">
+    <div className="card card-side bg-[#657bad99] shadow-xl mx-auto px-5 pt-5 items-center flex-col md:flex-row justify-between mt-10 relative">
+      <MdDeleteForever
+        className="absolute top-0 right-0 -translate-x-3/4 translate-y-3/4 text-4xl text-red-500 hover:text-red-700"
+        onClick={() => handleDelete(_id)}
+      />
       <div className="card-body md:flex items-center">
         <figure className="">
           <PhotoView src={posterImage}>
@@ -46,6 +52,7 @@ const ReviewCard = ({ review }) => {
 
 ReviewCard.propTypes = {
   review: PropTypes.object,
+  handleDelete: PropTypes.func,
 };
 
 export default ReviewCard;

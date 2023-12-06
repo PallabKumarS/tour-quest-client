@@ -19,6 +19,8 @@ const BookingList = () => {
     return <CustomSpinner></CustomSpinner>;
   }
 
+  let totalPrice = 0;
+
   const handleCancel = (tour) => {
     axiosSecure
       .delete(`/bookings/${tour?._id}?email=${user?.email}`)
@@ -42,6 +44,7 @@ const BookingList = () => {
         handleApply={handleApply}
         handleCancel={handleCancel}
         handlePay={handlePay}
+        totalPrice={totalPrice}
       ></BookingTable>
     </CustomContainer>
   );

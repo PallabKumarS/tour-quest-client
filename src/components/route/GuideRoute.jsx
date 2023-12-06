@@ -14,7 +14,9 @@ const GuideRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate state={location.pathname} to="/login"></Navigate>;
+  return (
+    <Navigate state={location.pathname} to="/dashboard/profile"></Navigate>
+  );
 };
 
 GuideRoute.propTypes = {
