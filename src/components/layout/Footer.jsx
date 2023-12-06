@@ -15,7 +15,7 @@ const Footer = () => {
     <div className="mt-20 text-center mx-auto">
       <footer className="footer p-10 bg-base-200 justify-evenly">
         <aside className="text-center">
-          <img src={logo} alt="" />
+          <img src={logo} alt="" className="mx-auto" />
           <p className={`text-lg font-medium ${gradientTextClasses}`}>
             <span className="text-3xl font-bold">Tour Quest</span>
             <br />
