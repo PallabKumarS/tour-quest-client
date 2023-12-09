@@ -11,4 +11,4 @@
 - It is possible to access the admin panel and control activities
 
 ## Technologies Used Here
-[![My Skills](https://skillicons.dev/icons?i=html,css,react,tailwind,js,firebase,vercel)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=html,css,react,tailwind,js,firebase)](https://skillicons.dev)
