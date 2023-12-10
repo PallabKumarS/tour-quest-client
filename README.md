@@ -9,3 +9,6 @@
 - Has jwt authentication
 - It is possible to check the progress of your booked services
 - It is possible to access the admin panel and control activities
+
+## Technologies Used Here
+[![My Skills](https://skillicons.dev/icons?i=html,css,react,tailwind,js,firebase)](https://skillicons.dev)
