@@ -1,11 +1,10 @@
 import { BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs";
 import { gradientTextClasses } from "../shared/CustomText";
 import logo from "/logo.png";
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import useAuth from "../shared/useAuth";
 
 const Footer = () => {
-  const { handleAlert } = useContext(AuthContext);
+  const { handleAlert } = useAuth();
 
   const handleNewsletter = (e) => {
     e.preventDefault();
