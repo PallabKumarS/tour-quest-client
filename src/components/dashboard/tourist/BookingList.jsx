@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CustomContainer from "../../shared/CustomContainer";
 import CustomSpinner from "../../shared/CustomSpinner";
 import { headerClasses } from "../../shared/CustomText";
@@ -5,8 +6,11 @@ import Loader from "../../shared/Loader";
 import useAuth from "../../shared/useAuth";
 import useAxios from "../../shared/useAxios";
 import BookingTable from "./BookingTable";
+import PaymentModal from "../../shared/PaymentModal";
 
 const BookingList = () => {
+  const [selectedRowData, setSelectedRowData] = useState(null);
+
   const { user, handleAlert } = useAuth();
   const axiosSecure = useAxios();
   const {
@@ -32,9 +36,11 @@ const BookingList = () => {
       });
   };
 
-  const handlePay = () => {};
-
   const handleApply = () => {};
+
+  const handlePay = (tour) => {
+    setSelectedRowData(tour);
+  };
 
   return (
     <CustomContainer>
@@ -43,9 +49,17 @@ const BookingList = () => {
         bookings={bookings}
         handleApply={handleApply}
         handleCancel={handleCancel}
-        handlePay={handlePay}
         totalPrice={totalPrice}
+        handlePay={handlePay}
       ></BookingTable>
+      {selectedRowData && (
+        <PaymentModal
+          setSelectedRowData={setSelectedRowData}
+          rowData={selectedRowData}
+          open={true}
+          refetch={refetch}
+        ></PaymentModal>
+      )}
     </CustomContainer>
   );
 };

@@ -7,9 +7,9 @@ import { useRef } from "react";
 
 const BookingTable = ({
   bookings,
-  handlePay,
   handleCancel,
   handleApply,
+  handlePay,
   totalPrice,
 }) => {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -88,13 +88,6 @@ const BookingTable = ({
                     >
                       Cancel
                     </button>
-                    {/* <button
-                      className={`btn btn-secondary`}
-                      onClick={() => handleApply(tour)}
-                      disabled={bookings.length < 3}
-                    >
-                      Apply
-                    </button> */}
                   </div>
                 </td>
               </tr>
@@ -123,6 +116,8 @@ const BookingTable = ({
             )}
           </tbody>
         </table>
+        {/* modal here  */}
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
       </div>
     </CustomContainer>
   );

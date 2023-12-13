@@ -20,6 +20,7 @@ import BookingList from "../dashboard/tourist/BookingList";
 import WishList from "../dashboard/tourist/WishList";
 import GuideRoute from "./GuideRoute";
 import AssignedTours from "../dashboard/guide/AssignedTours";
+import Payment from "../pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
       {
         path: "/stories/:id",
         element: <StoryDetails></StoryDetails>,
+      },
+      {
+        path: "/payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
     ],
   },
