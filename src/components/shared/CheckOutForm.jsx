@@ -45,7 +45,7 @@ const CheckOutForm = ({ rowData, refetch, closeModal }) => {
       console.log("payment error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+      console.log("payment method", "paymentMethod");
       setError("");
     }
 
@@ -69,6 +69,19 @@ const CheckOutForm = ({ rowData, refetch, closeModal }) => {
           "success",
           `Payment Successful. Transaction ID: ${paymentIntent.id}`
         );
+        const payload = {
+          name: user?.displayName,
+          email: user?.email,
+          paymentIntentId: paymentIntent.id,
+        };
+        axiosSecure
+          .post(`/send-mail?email=${user?.email}`, payload)
+          .then((res) => {
+            if (res.status === 201) {
+              handleAlert("success", "Email Sent with Payment TXN ID");
+            }
+          });
+
         const status = {
           status: "Paid",
         };
