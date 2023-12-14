@@ -3,8 +3,8 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-// export const baseUrl = "https://tour-guide-server-seven.vercel.app";
-export const baseUrl = "http://localhost:5000";
+export const baseUrl = "https://tour-guide-server-seven.vercel.app";
+// export const baseUrl = "http://localhost:5000";
 export const axiosSecure = axios.create({
   baseURL: baseUrl,
   withCredentials: true,
